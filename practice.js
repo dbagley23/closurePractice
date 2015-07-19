@@ -10,18 +10,20 @@ var outer = function(){
 //Invoke outer saving the return value into another variable called 'inner'.
 
   //Code Here
+var inner = outer();
+
 
 //Once you do that, invoke inner.
 
   //Code Here
-
+inner();
 
 
 //Next problem
 
 
 
-var callFriend = function(){
+var callFriend = function(number){
   var friend = 'Jake';
   function callF(number){
     return 'Calling ' + friend + ' at ' + number;
@@ -33,11 +35,10 @@ var callFriend = function(){
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
   //Code Here
-
-
+var myCall = callFriend();
+myCall('435-215-9248');
 
 //Next Problem
-
 
 
 /*
@@ -45,11 +46,18 @@ var callFriend = function(){
 */
 
   //Code Here
-  var count = makeCounter();
-  count() // 1
-  count() // 2
-  count() // 3
-  count() // 4
+
+var makeCounter = function(){
+  var number = 1;
+  return function addNumber(){
+    console.log(number++);
+  }
+}
+  var myCount = makeCounter();
+  myCount() // 1
+  myCount() // 2
+  myCount() // 3
+  myCount() // 4
 
 
 
@@ -63,7 +71,42 @@ var callFriend = function(){
   Once completed, add a second argument that allows the function to be invoked N number of times.
   After the function has been called N number of times, console.log('STAHHP');
 */
+var myFunction = function(){
+  return function(){
+      console.log('Hello')
+  }
+}
+var firstFn = function(myFn){
+  return function(){
+    myFn();
+  }
+}
 
+firstFn(myFunction)();
+
+/* 2nd problem*/
+var myFunction = function(){
+    console.log('Hello')
+}
+
+var firstFn = function(myFn, numTimes){
+    return function(){
+        for(var i = 0; i < numTimes; i++){
+            myFn();
+        }
+    }
+}
+
+firstFn(myFunction, 6);
+
+/*info from class*/
+function outer(){
+  var sentence = 'hello';
+  return function(){
+    alert(sentence);
+  }
+}
+outer()(); /*pay attenter to the stacked perintheses*/
 
 
 
